@@ -32,4 +32,26 @@ const people = new People({
     name: "lionel",
     age: 31
 });
-people.save();
+//people.save();
+
+//multiple entry
+const girl = new People({
+    name: "ell",
+    age: 22
+});
+const boy = new People({
+    name: "li",
+    age: 11
+});
+const dog = new People({
+    name: "tom",
+    age: 1
+});
+People.insertMany([girl, boy, dog], function (err) {
+    if (err) {
+        console.log(err);
+    }
+    else {
+        console.log("Sucessfully saved all profile to exampleDB");
+    }
+});
