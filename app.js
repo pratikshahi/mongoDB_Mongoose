@@ -7,7 +7,12 @@ mongoose.connect("mongodb://localhost:27017/exampleDB", { useUnifiedTopology: tr
 //how we want our data to be structured
 const exampleSchema = new mongoose.Schema({
     name: String,
-    rating: Number,
+    //validation
+    rating: {
+        type: Number,
+        min: 1,
+        max: 10
+    },
     review: String
 });
 //collection Example will stick with exampleSchema
@@ -16,38 +21,42 @@ const Example = mongoose.model("Example", exampleSchema);
 //example is document from Example model
 const example = new Example({
     name: "pratik",
-    rating: 9,
+    rating: 10,
     review: "better than expected."
 });
 
-//example.save();   //to save remove comment
+//example.save();               //to save remove comment
 
 const profileSchema = new mongoose.Schema({
-    name: String,
+    name: {
+        type: String,
+        required: true
+    },
     age: Number,
 
 });
 const People = mongoose.model("Profile", profileSchema);
 const people = new People({
-    name: "lionel",
+    name: "messi",
     age: 31
 });
-//people.save();
+//people.save();                    //to save remove comment
+
 
 //multiple entry
-const girl = new People({
-    name: "ell",
-    age: 22
-});
-const boy = new People({
-    name: "li",
-    age: 11
-});
-const dog = new People({
-    name: "tom",
-    age: 1
-});
 //remove comment to insert multiple entry
+// const girl = new People({
+//     name: "ell",
+//     age: 22
+// });
+// const boy = new People({
+//     name: "li",
+//     age: 11
+// });
+// const dog = new People({
+//     name: "tom",
+//     age: 1
+// });
 // People.insertMany([girl, boy, dog], function (err) {
 //     if (err) {
 //         console.log(err);
@@ -73,6 +82,9 @@ People.find(function (err, foundData) {
         console.log(err);
     }
     else {
+        //once we are done with DB close connection
+        mongoose.connection.close();
+
         foundData.forEach(function (element) {
 
             console.log(element.name);
