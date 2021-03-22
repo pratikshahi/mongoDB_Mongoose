@@ -104,10 +104,11 @@ People.find(function (err, foundData) {
 
 //delete db
 
-People.deleteOne({ age: 31 }, function (err) {
-    if (err) {
-        colsole.log(err);
-    } else {
-        console.log("deletion sucess");
-    }
-})
+// People.deleteOne({ age: 31 }, function (err) {
+//     if (err) {
+//         colsole.log(err);
+//     } else {
+//         console.log("deletion sucess");
+//     }
+// })
+
