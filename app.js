@@ -93,3 +93,21 @@ People.find(function (err, foundData) {
     }
 });
 
+//update db
+// People.updateOne({_id:"1"},{name:"desiredName"},function(err){
+//     if(err){
+//         colsole.log(err);
+//     }else{
+//         console.log("Sucess in updating");
+//     }
+// });
+
+//delete db
+
+People.deleteOne({ age: 31 }, function (err) {
+    if (err) {
+        colsole.log(err);
+    } else {
+        console.log("deletion sucess");
+    }
+})
