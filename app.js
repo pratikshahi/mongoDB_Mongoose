@@ -47,11 +47,37 @@ const dog = new People({
     name: "tom",
     age: 1
 });
-People.insertMany([girl, boy, dog], function (err) {
+//remove comment to insert multiple entry
+// People.insertMany([girl, boy, dog], function (err) {
+//     if (err) {
+//         console.log(err);
+//     }
+//     else {
+//         console.log("Sucessfully saved all profile to exampleDB");
+//     }
+// });
+
+//reading from DB
+People.find(function (err, foundData) {
     if (err) {
         console.log(err);
     }
     else {
-        console.log("Sucessfully saved all profile to exampleDB");
+        console.log(foundData);
     }
 });
+
+//reading only particular data from db
+People.find(function (err, foundData) {
+    if (err) {
+        console.log(err);
+    }
+    else {
+        foundData.forEach(function (element) {
+
+            console.log(element.name);
+
+        });
+    }
+});
+
